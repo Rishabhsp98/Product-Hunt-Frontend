@@ -8,19 +8,22 @@ import { ProductService } from './services/product.service';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SharedService } from './services/shared.service';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    ProductCategoryMenuComponent
+    ProductCategoryMenuComponent,
+    SearchComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

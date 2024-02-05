@@ -5,7 +5,9 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 // paths priority goes from top to bottom , so generic is defined at the bottom
 export const routes: Routes = [
+  {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id', component: ProductListComponent},
+  {path: 'category/:id/:categoryName', component: ProductListComponent},
   {path: 'category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},
   {path: '', redirectTo: '/products', pathMatch: 'full'},

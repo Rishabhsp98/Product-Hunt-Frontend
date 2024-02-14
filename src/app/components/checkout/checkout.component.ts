@@ -88,4 +88,24 @@ export class CheckoutComponent implements OnInit {
     
   }
 
+  handleMonthsAndYears(){
+    const creditCardFormGroup = this.checkoutFormGroup.controls['creditCard'];
+
+    const currentYear: number = new Date().getFullYear();
+
+    const selectedYear : number = Number(creditCardFormGroup.value.expirationYear);
+
+    let startMonth : number;
+
+    if(currentYear === selectedYear){
+      startMonth = new Date().getMonth()+1;
+    }else{
+      startMonth = 1;
+    }
+    this.checkoutformService.getCreditCardMonths(startMonth).subscribe((res)=>{
+      console.log("Retirieved credit Card Months",JSON.stringify(res));
+      this.creditCardMonths = res;
+    })
+  }
+
 }

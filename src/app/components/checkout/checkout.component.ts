@@ -33,6 +33,8 @@ export class CheckoutComponent implements OnInit {
   creditCardMonths: number[] = [];
   creditCardYears: number[] = [];
 
+  storage : Storage = sessionStorage;
+
   checkoutFormGroup: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +43,14 @@ export class CheckoutComponent implements OnInit {
     private checkoutService: CheckoutService,
     private router: Router
   ) {
+
+    let userEmail = this.storage.getItem('userEmail')
+ 
+    if(userEmail == null) 
+        userEmail = '{"userEmail":"null"}';
+ 
+    const theEmail = JSON.parse(userEmail);
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [
@@ -53,7 +63,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(3),
           Customvalidators.notOnlyWhitespace,
         ]),
-        email: new FormControl('', [
+        email: new FormControl(theEmail, [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
           Customvalidators.notOnlyWhitespace,

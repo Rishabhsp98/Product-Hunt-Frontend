@@ -44,6 +44,14 @@
             "scripts": []
           },
           "configurations": {
+            "fntest":{
+              "fileReplacements": [
+                {
+                  "replace":"src/environments/environment.ts",
+                  "with":"src/environments/environment.fntest.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -81,6 +89,9 @@
           "configurations": {
             "production": {
               "browserTarget": "angular-ecommerce:build:production"
+            },
+            "fntest":{
+              "browserTarget": "angular-ecommerce:build:fntest"
             },
             "development": {
               "browserTarget": "angular-ecommerce:build:development"

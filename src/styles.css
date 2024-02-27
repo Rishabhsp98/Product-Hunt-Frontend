@@ -4,6 +4,8 @@
  * ----------------------------
  */
 
+ /* @import '~ngx-toastr/toastr'; */
+
  *{
     margin:0;
     padding:0;
@@ -1041,3 +1043,5 @@ footer ul li{
         padding:8px 0
     }
 }
+
+

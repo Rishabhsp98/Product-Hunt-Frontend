@@ -31,6 +31,9 @@ import {
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+// import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 const oktaConfig = myAppConfig.oidc;
 
@@ -57,7 +60,12 @@ const oktaAuth = new OktaAuth(oktaConfig);
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    OktaAuthModule
+    OktaAuthModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      preventDuplicates: true,
+    })
   ],
   providers: [ProductService,SharedService, {provide: OKTA_CONFIG,useValue : {oktaAuth}}, {provide : HTTP_INTERCEPTORS,useClass : AuthInterceptorService,multi: true}],
   bootstrap: [AppComponent]

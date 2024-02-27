@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Country } from 'src/app/common/country';
 import { Order } from 'src/app/common/order';
 import { OrderItem } from 'src/app/common/order-item';
@@ -41,7 +42,8 @@ export class CheckoutComponent implements OnInit {
     private checkoutformService: CheckoutformService,
     private cartService: CartService,
     private checkoutService: CheckoutService,
-    private router: Router
+    private router: Router,
+    private toaster : ToastrService
   ) {
 
     let userEmail = this.storage.getItem('userEmail')
@@ -280,14 +282,16 @@ export class CheckoutComponent implements OnInit {
     // call REST API via the CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({
         next: response => {
-          alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
+          this.toaster.success(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
+          // alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
 
           // reset cart
           this.resetCart();
 
         },
         error: err => {
-          alert(`There was an error: ${err.message}`);
+          this.toaster.error(`There was an error: ${err.message}`);
+          // alert(`There was an error: ${err.message}`);
         }
       }
     );

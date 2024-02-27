@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+// import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-members-page',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersPageComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor( private toaster : ToastrService) { }
 
   ngOnInit(): void {
+    this.toaster.success(`Hi ,Welcome to the Members Page!`);
   }
 
 }

@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+showInput(text: string) {
+console.log("this is input", text);
+}
 
   constructor(private router: Router) { }
 
